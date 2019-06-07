@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hi {{name}}, Add items here :</h1>
+    <form action="/cart" method="post">
+        <input type="hidden" name="name" value="{{name}}">
+        <input type="text" name="toAdd" placeholder="Input item here" required>
+        <button type="submit">Add</button>
+    </form>
+
+    <h2>My cart</h2>
+    <form action="/update" method="post"></form>
+        {{#each item}}
+            <ul>
+                <table>
+                    <tr>
+                            <td>
+                                <li>{{this}}</li>
+                            </td>
+                            <td>
+                                <input type="hidden" name="name" value="{{name}}">
+                                <button type="submit" name ="delItem" value="{{this}}">Delete</button>
+                            </td>
+                        
+                    </tr>
+                </table>
+            </ul>
+        {{/each}}
+    </form>
+
+</body>
+</html>

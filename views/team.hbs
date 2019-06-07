@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>welcome to Employee Team Creation</h1>
+    <div></div>
+        <form action="/search" method="get">
+            <label for="empName">Search :</label>
+            <input type="text" name="empName" placeholder="Search first name here" id="empName">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    {{#if empName}}
+    <div>
+        <h2>Query results: {{empName}}</h1>
+
+        <table border = "1">
+            <thead>
+                <th>Employee no</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Gender</th>
+                <th>Add?</th>
+            </thead>
+            <tbody>
+
+                {{#each employee}}
+                    <tr>
+                        <td>{{this.emp_no}}</td>
+                        <td>{{this.first_name}}</td>
+                        <td>{{this.last_name}}</td>
+                        <td>{{this.gender}}</td>
+                        <td>
+                            <form action="/team" method="post">
+                                <input type="hidden" name="newName" value="{{this.emp_no}}, {{this.first_name}} {{this.last_name}}">
+                                <button type="submit">Add</button>
+                            </form>
+                        </td>
+                    </tr>
+                {{/each}}
+
+            </tbody>
+        </table>
+    </div>
+    {{else}}
+        <div>
+            <h2>My team</h2>
+                {{#each team}}
+                    <ul>
+                        <li>{{this}}</li>
+                    </ul>
+                        
+                {{/each}}
+    </div>
+    {{/if}}
+
+</body>
+</html>
